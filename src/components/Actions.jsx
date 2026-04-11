@@ -6,6 +6,8 @@ import CustomDialog from './CustomDialog';
 import axios from 'axios';
 import { handleRequestError } from '../utils/requestErrorHandler';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Actions = ({ row, reload }) => {
 
     //State to control the dialog
@@ -23,7 +25,7 @@ const Actions = ({ row, reload }) => {
         try {
             const token = localStorage.getItem('token');
             console.log(`Updating...${row.uid}`)
-            const response = await axios.put(`http://localhost:8000/samples/${row.uid}`, formJson, {
+            const response = await axios.put(`${API_URL}/samples/${row.uid}`, formJson, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
@@ -42,7 +44,7 @@ const Actions = ({ row, reload }) => {
         try {
             const token = localStorage.getItem('token');
             console.log(`Deleting...${row.uid}`);
-            const response = await axios.delete(`http://localhost:8000/samples/${row.uid}`, {
+            const response = await axios.delete(`${API_URL}/samples/${row.uid}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
