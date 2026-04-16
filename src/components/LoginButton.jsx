@@ -9,6 +9,8 @@ import DialogActions from "@mui/material/DialogActions";
 import { useNavigate } from 'react-router-dom';
 import { DialogContent, TextField } from '@mui/material';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function LoginButton({setIsAuthenticated}) {
     const [open, setOpen] = React.useState(false);
     const [username, setUsername] = useState('');
@@ -30,11 +32,12 @@ export default function LoginButton({setIsAuthenticated}) {
             params.append('username', username);
             params.append('password', password);
 
-            const response = await axios.post('http://localhost:8000/token', params, {
+            const response = await axios.post(`${API_URL}/auth/token`, params, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
+            
             localStorage.setItem('token', response.data.access_token);
             setIsAuthenticated(true);
             handleClose();

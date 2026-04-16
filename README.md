@@ -1,276 +1,130 @@
-# 🪨 Rock Samples Frontend
+# 🪨 Rock Samples Inventory - Frontend
 
-Una aplicación web moderna construida con **React** para visualizar y gestionar un catálogo interactivo de muestras geológicas. Proporciona una interfaz intuitiva para búsqueda, filtrado y operaciones CRUD sobre especímenes de rocas.
+A professional, modern web application built with **React** and **Vite** designed to visualize and manage an interactive catalog of geological specimens. This project provides a robust interface for researchers and students to browse, filter, and perform CRUD operations on rock samples.
 
-**Stack:** React • Vite • Material-UI • Axios • React Router
-
-> Este repositorio requiere de tener el [Backend](https://github.com/nowhereOnce/rocks-back-dockerized) corriendo.
+Developed in collaboration with the **UNAM Institute of Geology**.
 
 ---
 
-## 📋 Tabla de Contenidos
+## 🚀 Overview
 
-- [Características](#características)
-- [Requisitos Previos](#requisitos-previos)
-- [Instalación y Configuración](#instalación-y-configuración)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Componentes Principales](#componentes-principales)
-- [Desarrollo Local](#desarrollo-local)
-- [Build y Deployment](#build-y-deployment)
-- [Troubleshooting](#troubleshooting)
+This frontend serves as the user interface for the [Rock Samples Backend](https://github.com/nowhereOnce/rocks-back-dockerized). It features a highly responsive design, real-time data synchronization, and a seamless user experience for managing complex geological data.
 
----
+### ✨ Key Features
 
-## ✨ Características
-
-- **Interfaz Responsiva** adaptada a desktop, tablet y móvil
-- **Tabla Interactiva** con paginación, ordenamiento y búsqueda
-- **Filas Expandibles** para visualizar detalles completos de muestras
-- **Búsqueda en Tiempo Real** con filtrado instantáneo
-- **CRUD Completo** (Crear, Leer, Actualizar, Eliminar) de muestras
-- **Sistema de Autenticación** basado en tokens
-- **Material-UI Components** para diseño profesional
-- **Custom Hooks** para lógica reutilizable
+- **Interactive Data Table**: Powered by `react-data-table-component` with support for pagination, sorting, and conditional formatting.
+- **Advanced Search**: Real-time filtering system to locate specimens instantly by name or metadata.
+- **Specimen Details**: Expandable rows providing deep-dive information and high-resolution imagery for each sample.
+- **Full CRUD Support**: Intuitive modals and forms for creating, updating, and deleting records (Admin access required).
+- **Responsive UI/UX**: Built with **Material-UI (MUI)** for a clean, professional look that works across all devices.
+- **Secure Integration**: Token-based authentication flow for managing sensitive data.
 
 ---
 
-## 🔧 Requisitos Previos
+## 🛠 Tech Stack
 
-- **Node.js** ≥ 16.0
-- **npm** ≥ 8.0 o **yarn** ≥ 1.22
-- **Backend corriendo** en http://localhost:8000 (o puerto configurable)
-
----
-
-## 🚀 Instalación y Configuración
-
-### 1. Clonar el repositorio
-
-```bash
-git clone <link-repositorio>
-cd rocks-front
-```
-
-### 2. Instalar dependencias
-
-```bash
-npm install
-```
-
-### 3. Configurar URL del Backend
-
-Edita `src/services/api.js`:
-
-```javascript
-const API_URL = 'http://localhost:8000/api';  // Cambiar según el backend
-```
-
-### 4. Ejecutar servidor de desarrollo
-
-```bash
-npm run dev
-```
-
-Abre http://localhost:5173 en tu navegador. **La app se recargará automáticamente al editar archivos.**
+- **Framework**: [React 18](https://reactjs.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **UI Library**: [Material-UI (MUI)](https://mui.com/)
+- **State & Logic**: Custom Hooks & Context API
+- **API Client**: [Axios](https://axios-http.com/)
+- **Table Management**: [React Data Table Component](https://github.com/jbetancur/react-data-table-component)
+- **Styling**: Emotion & Styled Components
 
 ---
 
-## 📁 Estructura del Proyecto
+## ⚙️ Getting Started
 
-```
-rocks-front/
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx              # Barra superior
-│   │   ├── TableComponent.jsx      # Tabla de muestras
-│   │   ├── SearchBar.jsx           # Búsqueda
-│   │   ├── FormButton.jsx          # Botón crear muestra
-│   │   ├── FormContent.jsx         # Formulario
-│   │   ├── Actions.jsx             # Editar/eliminar
-│   │   ├── ExpandedComponent.jsx   # Detalles ampliados
-│   │   ├── CustomDialog.jsx        # Modal
-│   │   └── LoginButton.jsx         # Autenticación
-│   ├── hooks/
-│   │   └── useFetch.js             # Fetch de datos
-│   ├── pages/
-│   │   └── HomePage.jsx            # Página principal
-│   ├── services/
-│   │   └── api.js                  # Configuración Axios
-│   ├── utils/
-│   │   └── requestErrorHandler.js  # Manejo de errores
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package.json
-├── vite.config.js
-└── eslint.config.js
+### Prerequisites
+
+- **Node.js** (v16.0 or higher)
+- **npm** or **yarn**
+- **Backend API**: Ensure the [Backend Service](https://github.com/nowhereOnce/rocks-back-dockerized) is accessible.
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd rocks-front
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_API_URL=http://localhost:8000/api
+   ```
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:5173`.
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/         # Reusable UI components (Table, SearchBar, Modals)
+├── hooks/              # Custom React hooks (useFetch for API management)
+├── pages/              # Main view components (HomePage)
+├── services/           # API service configuration and Axios instances
+├── utils/              # Helper functions and error handlers
+├── App.jsx             # Root application component
+└── main.jsx            # Application entry point
 ```
 
 ---
 
-## 🧩 Componentes Principales
+## 🔌 API Integration
 
-### **HomePage.jsx**
+The application communicates with a FastAPI backend. Key endpoints integrated:
 
-Componente principal que orquesta la aplicación:
-
-- Obtiene datos de la API via `useFetch()`
-- Mantiene estado de búsqueda
-- Gestiona autenticación
-- Renderiza Header, SearchBar y TableComponent
-
-### **TableComponent.jsx**
-
-Tabla interactiva con:
-
-- Columnas: Nombre Roca, Localidad, País, Imagen
-- Paginación y ordenamiento
-- Filas expandibles con detalles
-- Controles de Acciones (Editar/Eliminar)
-
-### **SearchBar.jsx**
-
-Campo de búsqueda que filtra en tiempo real por nombre de roca.
-
-### **FormButton.jsx + FormContent.jsx**
-
-Botón flotante que abre modal para crear nueva muestra:
-
-- Validación de campos
-- POST request a `/api/samples`
-- Recarga tabla después de guardar
-
-### **Actions.jsx**
-
-Botones Editar/Eliminar por fila (solo si autenticado).
-
-### **ExpandedComponent.jsx**
-
-Detalles ampliados de una muestra (mostrado al expandir fila).
-
-### **LoginButton.jsx**
-
-Modal de login con autenticación basada en tokens.
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/samples/` | Retrieve the full catalog of specimens |
+| `POST` | `/samples/` | Add a new rock sample to the database |
+| `PUT` | `/samples/{id}` | Update existing specimen details |
+| `DELETE` | `/samples/{id}` | Remove a specimen from the inventory |
 
 ---
 
-## 🔌 Integración Backend
+## 🧪 Development & Quality Assurance
 
-La aplicación se conecta a una API FastAPI mediante Axios:
-
-```javascript
-// Obtener muestras
-GET /api/samples/
-
-// Crear muestra
-POST /api/samples/
-Body: { rock_name, location_name, location_country, picture, cut, thin_section }
-
-// Actualizar muestra
-PUT /api/samples/{id}
-
-// Eliminar muestra
-DELETE /api/samples/{id}
-```
-
-**Importante:** Verifica que el backend esté corriendo antes de iniciar el frontend.
-
-```bash
-# Si usas Docker Compose
-cd rocks-back-dockerized
-docker-compose up
-
-# O si FastAPI local
-cd app
-python runserver.py
-```
+- **Linting**: Controlled via ESLint to ensure code consistency.
+- **Component Design**: Follows atomic design principles for maximum reusability.
+- **Error Handling**: Centralized error management system for API failures.
 
 ---
 
-## 🐛 Troubleshooting
+## 🤝 Contributing
 
-### ❌ "Cannot GET /samples" o tabla vacía
+This project is part of a larger geological digitization initiative. For major changes, please open an issue first to discuss what you would like to change.
 
-**Causa:** Backend no está corriendo.
-
-```bash
-# Verifica que el backend responde
-curl http://localhost:8000/api/samples/
-
-# Si da error, inicia el backend
-cd rocks-back-dockerized
-docker-compose up
-```
-
-### ❌ "CORS policy blocked request"
-
-**Causa:** Backend no tiene CORS configurado.
-
-**Solución:** En `app/src/__init__.py`, configura CORS:
-
-```python
-from fastapi.middleware.cors import CORSMiddleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-```
-
-### ❌ URL de API incorrecta
-
-Si el backend corre en otro puerto, actualiza `src/services/api.js`:
-
-```javascript
-// Para FastAPI en puerto 8003
-const API_URL = 'http://localhost:8003';
-
-// Para producción
-const API_URL = 'https://api.rocks.com/api';
-```
-
-### ❌ Los datos no se actualizan después de crear muestra
-
-Verifica que en `FormContent.jsx` se llame a `reload()` después de POST:
-
-```javascript
-const handleSubmit = async (formData) => {
-    await axios.post(`${API_URL}/samples`, formData);
-    reload();      // ← Crucial
-    closeModal();
-};
-```
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## ✅ Checklist de Inicio
+## 👨‍💻 Author
 
-- [ ] Node.js ≥ 16 instalado
-- [ ] Dependencias instaladas (`npm install`)
-- [ ] Backend corriendo
-- [ ] URL de API configurada en `src/services/api.js`
-- [ ] `npm run dev` ejecutado
-- [ ] Frontend accesible en http://localhost:5173
-- [ ] Tabla carga datos desde API
-- [ ] Búsqueda filtra en tiempo real
+**Aguilar Ramos Enrique Alejandro**
+*Frontend Engineer specializing in React & Scientific Interfaces*
 
 ---
 
-## 📚 Recursos
-
-- [React Documentation](https://react.dev/)
-- [Vite Documentation](https://vitejs.dev/)
-- [Material-UI Components](https://mui.com/)
-- [Axios Documentation](https://axios-http.com/)
-
----
-
-## 👨‍💻 Autor
-
-**Aguilar Ramos Enrique Alejandro** | Frontend Development • React • UI/UX
-
----
-
-**¡Gracias por usar Rock Samples Frontend!** 🪨✨
+<p align="center">
+  <img src="public/instituto-de-geologia-logo.png" alt="Institute of Geology Logo" width="100"/>
+  <br>
+  <b>UNAM - Instituto de Geología</b>
+</p>

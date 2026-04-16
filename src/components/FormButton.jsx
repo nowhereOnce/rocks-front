@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import CustomDialog from "./CustomDialog";
 import { handleRequestError } from '../utils/requestErrorHandler';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function FormButton({ reload }) {
     const [open, setOpen] = React.useState(false);
 
@@ -19,7 +21,7 @@ export default function FormButton({ reload }) {
     const handleSubmit = async (formJson) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post("http://localhost:8000/samples/", formJson, {
+            const response = await axios.post(`${API_URL}/samples/`, formJson, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
